@@ -1,0 +1,127 @@
+<%- contentFor('hero') %>
+<section class="hero">
+<div class="hero-content">
+<h2>Smart Sellers use us !!!</h2>
+<p>RThe best place to be</p>
+<a href="/" class="btn btn-lg btn-primary">Welcome.</a>
+</div>
+</section>
+
+<main>
+<div class="container">
+
+<div>
+Home Page
+</div>
+
+<div class="col-md-6">
+
+<form action="" method="post" class="login-form" id="signIn-form">
+
+<div class="form-group">
+<label>E-mail</label>
+<input type="email" name="email" class="form-control">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input type="password" name="password" class="form-control">
+</div>
+
+<div class="form-group text-right">
+<button type="submit" id="sign-in" class="btn btn-danger btn-lg">Sign In</button>
+</div>
+
+<div class="row">
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-6 ">
+
+<form action="" method="post" class="login-form" id="signUp-form">
+
+<div class="form-group">
+<label>E-mail</label>
+<input type="email" name="email" class="form-control">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input type="password" name="password" class="form-control">
+</div>
+<div class="form-group">
+<label> Confirm Password</label>
+<input type="password" name="password" class="form-control">
+</div>
+<div class="form-group text-right">
+<button type="submit" id="sign-up" class="btn btn-primary btn-lg">Sign Up</button>
+</div>
+
+
+
+</form>
+
+
+</div>
+</div>
+</main>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script src="http://localhost:8080/scripts/app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+<script>
+var config = {
+    apiKey: "AIzaSyBJ-NUTzTtQoAeEUSH_GKl1Rcyd9G8hZvU",
+    authDomain: "storebuilder-2e770.firebaseapp.com",
+    databaseURL: "https://storebuilder-2e770.firebaseio.com",
+    storageBucket: "storebuilder-2e770.appspot.com",
+    messagingSenderId: "237724006816"
+  };
+  firebase.initializeApp(config);
+  </script>
+  <script src="scripts/app.js"></script>
+  <script type="text/javascript">
+  var fb = new FriendlyChat();
+  
+    $("#signIn-form").submit(function(e, v){
+    e.preventDefault();
+    var username =" ";
+    var password ="";
+    var values = $(this).serializeArray();
+    username = values[0].value;
+    console.log(username);
+    password = values[1].value;
+    
+    fb.signInUser(username,password);
+
+  });
+     $("#signUp-form").submit(function(e, v){
+    e.preventDefault();
+    var username =" ";
+    var password ="";
+    var values = $(this).serializeArray();
+    username = values[0].value;
+    console.log(username);
+    password = values[1].value;
+    
+    fb.signUp(username,password);
+
+  });
+      $("#log-in").submit(function(e, v){
+  
+    
+    fb.logIn();
+
+  });
+</script>
