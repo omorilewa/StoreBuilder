@@ -4,48 +4,38 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<button type="submit" id="sign-out" onclick="signOut()" class="btn btn-primary btn-lg"> Sign Out </button>
+
+
+
 <div class="container">
 <div class="row">
+
 <div id="centerElement" class="col-sm-6">
-<h2>Welcome to your dashboard</h2>
+<h2>Welcome to <%= storename %> </h2>
+<h4> Available products are shown below </h4>
+  
+<% for(va in products) { %>
+          
+           <div class="cool col-lg-6">
+                <img src="../img/aa.jpg" width="160px" height="100px">
+                <h2> <%= products[va].productname %> </h2>
+                <h4> ₦ <%= products[va].productprice %> </h4>
 
-<div id='allProducts' class="row demo">
+            </div>    
+         
+        
+    <% } %>
+</div>
+<div id='allProducts' class="col-sm-4">
 
-
+<img src="../img/shopper.jpg" width="700px" height="650px" style="margin-top:20px;">
 
 </div> 
 
 
 
-</div>
+  
 
-<div id ="addP" class="col-sm-4 pull-right">
-
-
-<form action="/contact" method="post" id="addProduct">
-  <!-- Modal -->
- 
-        <div class="form-group row">
-	    
-	  
-
-
-        <div class="col-sm-10">
-          <input type="text" id ="pName" placeholder="ProductName" name="pname" class="form-control" style="margin-top:30px;">
-        </div>
-         <div class="col-sm-10">
-         <input type="text" id ="pPrice" placeholder="ProductPrice" name="pclass" class="form-control" style="margin-top:30px;">
-        </div>
-          <div class="col-sm-10">
-         <textarea class="form-control" id="pText" rows="2" name="p" placeholder="Product Description" style="margin-top:30px;"></textarea>
-         </div>
-        <div class="col-sm-10">
-       <!-- <input type="file" value="upload" id="fileButton" class="btn btn-default" /> -->
-        <button type="submit" id="sign-in" class="btn btn-primary btn-lg">Add Products</button>
-        </div>
-   </form>
-   </div>
    </div>
    </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -79,11 +69,11 @@ var name;
   	// console.log(user.storename);
     // User is signed in.
 
-        /* var fileButton = document.getElementById('fileButton');
+         var fileButton = document.getElementById('fileButton');
 
      fileButton.addEventListener('change', function(e){
        var productname = document.getElementById('pName').value;
-   
+    comsole.log('productname is ' + productname + storename) ;
 
       var file = e.target.files[0];
       name = file.name;
@@ -105,7 +95,7 @@ task.on('state_changed',
 
 	);
 
-});*/
+});
 
     var storename = JSON.parse(window.sessionStorage.getItem('userDetails')).details.storename;
     var rel = firebase.database().ref("products/" + storename).on('value',function(snapshot) {
@@ -230,12 +220,6 @@ $("#addProduct").submit(function(e, v){
    description: description,
    storename: storename
  
-  }).then(function(response){ 
-
-     document.getElementById("pName").value = "";
-      document.getElementById("pName").value = "";
-       document.getElementById("pText").value = "";
-
   });
 }
 

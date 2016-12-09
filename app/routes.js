@@ -46,18 +46,28 @@ router.post('/contact',function(req,res){
 });
 
 router.get('/:storename',function(req,res){
-	console.log(req.params.storename);
+
     firebase.database().ref("products/").on('value',function(snapshot) {
         var value = snapshot.val();
-        //console.log(value);
+        var products ;
+        var storename = req.params.storename ;
+        console.log(req.params.storename);
       	for(va in value){
+
            //console.log(va);
-          if(req.param.storename === va){
+         if(req.params.storename === va){
+          	
+          	//console.log('Are you here');
+          	products = value[va];
+          	res.render('pages/publicurl',{products : products, storename : va });
           	//console.log('store exists');
           }
-          else{
-          	//console.log('store doesnt exist');
-          }
+          
+       	}
+       	if(products){
+       		console.log(products);
+       	}else{
+       		console.log("Store doesn't exist");
        	}
 
 
